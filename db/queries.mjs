@@ -7,4 +7,13 @@ async function findUserByUsername(username) {
 
     return user;
 }
-export default { findUserByUsername }
+
+async function insertUser(user) {
+    await pool.query(`
+        INSERT INTO users (username, first_name, last_name, password)
+        VALUES (
+            $1, $2, $3, $4
+        )
+    `, [user.username, user.first_name, user.last_name, user.password])
+}
+export default { findUserByUsername, insertUser }
