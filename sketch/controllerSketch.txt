@@ -1,0 +1,15 @@
+signUpFormGet
+render sign up sign up form
+
+
+signUpPost
+make sure username is at least 6 characters
+make sure username is not empty
+make sure username is not taken
+make sure first name is not empty
+make sure last name is not empty
+make sure password is not empty
+make sure password is at least 6 characters
+if any of these validators fail, render sign up form with error messages
+Add user to db
+redirect user to login page
