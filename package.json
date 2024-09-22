@@ -1,21 +1,21 @@
 {
   "name": "node-template",
   "version": "1.0.0",
-  "description": "A Node.js template repository",
+  "description": "A Node.js message board repository including members & admins",
   "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Figby222/node-template.git"
+    "url": "git+https://github.com/Figby222/members-only.git"
   },
   "author": "Figby222",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Figby222/node-template/issues"
+    "url": "https://github.com/Figby222/members-only/issues"
   },
-  "homepage": "https://github.com/Figby222/node-template#readme",
+  "homepage": "https://github.com/Figby222/members-only#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^10.0.0",
