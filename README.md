@@ -1,1 +1,1 @@
-A Node.js template repository
+A Node.js message board repository including members & admins
