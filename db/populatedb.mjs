@@ -7,7 +7,7 @@ const SQL = `CREATE TABLE IF NOT EXISTS users (
     username VARCHAR ( 255 ) UNIQUE NOT NULL,
     first_name VARCHAR ( 255 ) NOT NULL,
     last_name VARCHAR ( 255 ) NOT NULL,
-    passwordHash TEXT,
+    password TEXT,
     salt TEXT,
     membership_status BOOLEAN DEFAULT false
 );
