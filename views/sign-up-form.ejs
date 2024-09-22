@@ -8,6 +8,7 @@
     <body>
         <h1 class="main-heading">Sign Up</h1>
         <form action="/sign-up" method="POST">
+            <%- include("errors") %>
             <label for="username">Username: </label>
             <input type="email" name="username" id="username" placeholder="example@example.com" value="<%= locals.user.username %>"/>
             <label for="first-name">First Name: </label>
