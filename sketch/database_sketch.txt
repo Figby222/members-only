@@ -1,0 +1,25 @@
+Fields:
+first_name,
+last_name,
+username,
+passwordHash,
+salt,
+membership_status.
+message creation date
+message user id
+message title
+message text
+
+users table included columns
+first_name,
+last_name,
+username,
+passwordHash,
+salt,
+membership_status
+
+messages table  included columns
+title,
+timestamp,
+text,
+creator_id (foreign key)
