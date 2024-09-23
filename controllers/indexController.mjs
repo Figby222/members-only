@@ -51,8 +51,16 @@ const validateMessage = [
         .isLength({ max: 255 }).withMessage("Message must contain a maximum of 255 characters")
 ]
 
-function indexRouteGet(req, res) {
-    res.render("index", { title: "Node Template" });
+async function indexRouteGet(req, res) {
+    const messages = await db.getMessages();
+
+    if (req.isAuthenticated()) {
+        res.render("index", { title: "Message Board", messages: messages, user: req.user });
+        return;
+    }
+
+    res.render("index", { title: "Message Board", messages: messages })
+
 }
 
 function signUpFormGet(req, res) {
