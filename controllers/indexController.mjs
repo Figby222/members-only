@@ -2,6 +2,7 @@ import { body, query, validationResult } from "express-validator";
 import db from "../db/queries.mjs";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
+import "dotenv/config";
 
 const validateUser = [
     body("username")
@@ -29,6 +30,13 @@ const validateUser = [
             return confirmPassword === req.body.password;
         }).withMessage("Confirm Password field must be the same as password")
     
+]
+
+const validateClubRegistration = [
+    body("secret_password")
+        .custom((secretPassword) => {
+            return secretPassword === process.env.SECRET_CLUB_PASSWORD;
+        }).withMessage("Incorrect password")
 ]
 
 function indexRouteGet(req, res) {
@@ -70,4 +78,19 @@ function joinClubPageGet(req, res) {
     res.render("join-club-form");
 }
 
-export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet };
+const joinClubPost = [
+    validateClubRegistration,
+    asyncHandler(async (req, res) => {
+        const errorsResult = validationResult(req);
+        if (!errorsResult.isEmpty()) {
+            res.render("join-club-form", { errors: errorsResult.errors });
+            return;
+        }
+    
+        await db.setMember(req.user.id);
+    
+        res.redirect("/");
+    })
+]
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost };
