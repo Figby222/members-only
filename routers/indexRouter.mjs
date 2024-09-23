@@ -15,6 +15,6 @@ indexRouter.post("/sign-up", indexController.signUpPost);
 
 indexRouter.post("/join-club", indexController.joinClubPost);
 
-indexRouter.post("/login", indexController.loginPost);
+indexRouter.post("/log-in", indexController.loginPost);
 
 export default indexRouter;
