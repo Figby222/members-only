@@ -2,6 +2,8 @@ import { body, query, validationResult } from "express-validator";
 import db from "../db/queries.mjs";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
+import authUtil from "../lib/authorizationUtil.mjs";
+const { checkLoggedIn } = authUtil;
 import "dotenv/config";
 
 const validateUser = [
@@ -74,11 +76,15 @@ const signUpPost = [
     })
 ]
 
-function joinClubPageGet(req, res) {
-    res.render("join-club-form");
-}
+const joinClubPageGet = [
+    checkLoggedIn,
+    (req, res) => {
+        res.render("join-club-form");
+    }
+]
 
 const joinClubPost = [
+    checkLoggedIn,
     validateClubRegistration,
     asyncHandler(async (req, res) => {
         const errorsResult = validationResult(req);
