@@ -32,5 +32,15 @@ async function insertMessage(message) {
     `, [message.title, message.text, message.timestamp, message.creator_id]);
     return rows;
 };
+async function getMessages() {
+    const { rows } = await pool.query(`
+        SELECT messages.id, title, text, to_char(timestamp, 'DD Mon YYYY, HH12:MI:SS AM') as timestamp, 
+        creator_id, first_name, last_name, membership_status FROM messages
+        JOIN users ON messages.creator_id = users.id
+        ORDER BY timestamp
+    `);
 
-export default { findUserByUsername, insertUser, setMember, insertMessage }
+    return rows;
+}
+
+export default { findUserByUsername, insertUser, setMember, insertMessage, getMessages }
