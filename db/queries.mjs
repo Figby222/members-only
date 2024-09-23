@@ -33,7 +33,6 @@ async function insertMessage(message) {
     `, [message.title, message.text, message.timestamp, message.creator_id]);
     return rows;
 };
-
 async function getMessages() {
     const { rows } = await pool.query(`
         SELECT messages.id, title, text, to_char(timestamp, 'DD Mon YYYY, HH12:MI:SS AM') as timestamp, 
@@ -44,10 +43,13 @@ async function getMessages() {
 
     return rows;
 }
-
 async function setAdmin(userId) {
     await pool.query(`
         UPDATE users SET isAdmin = true WHERE users.id = $1`, [userId])
 }
 
-export default { findUserByUsername, insertUser, setMember, insertMessage, getMessages, setAdmin }
+async function deleteMessage(messageId) {
+    await pool.query(`DELETE FROM messages WHERE messages.id = $1`, [messageId])
+}
+
+export default { findUserByUsername, insertUser, setMember, insertMessage, getMessages, setAdmin, deleteMessage }
