@@ -13,3 +13,12 @@ make sure password is at least 6 characters
 if any of these validators fail, render sign up form with error messages
 Add user to db
 redirect user to login page
+
+joinClubPageGet
+render join club form if user is authenticated
+
+joinClubPagePost
+check if the password lines up with the secret club password
+if not, redirect to a failure page
+if so, set user membership status to true
+redirect user to success page
