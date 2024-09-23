@@ -12,15 +12,13 @@ indexRouter.get("/log-in", indexController.loginPageGet);
 indexRouter.get("/join-club", indexController.joinClubPageGet);
 
 indexRouter.get("/sign-up", indexController.signUpFormGet);
-
 indexRouter.get("/", indexController.indexRouteGet);
-
 indexRouter.post("/sign-up", indexController.signUpPost);
-
 indexRouter.post("/join-club", indexController.joinClubPost);
-
 indexRouter.post("/log-in", indexController.loginPost);
 
 indexRouter.post("/create-message", indexController.createMessagePost);
+
+indexRouter.post("/join-admins", indexController.joinAdminsPost);
 
 export default indexRouter;
