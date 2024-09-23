@@ -66,4 +66,8 @@ const signUpPost = [
     })
 ]
 
-export { indexRouteGet, signUpFormGet, signUpPost };
+function joinClubPageGet(req, res) {
+    res.render("join-club-form");
+}
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet };
