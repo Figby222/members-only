@@ -99,4 +99,8 @@ const joinClubPost = [
     })
 ]
 
-export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost };
+function loginPageGet(req, res) {
+    res.render("log-in-form");
+}
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet };
