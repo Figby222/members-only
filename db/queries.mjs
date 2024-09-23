@@ -16,4 +16,9 @@ async function insertUser(user) {
         )
     `, [user.username, user.first_name, user.last_name, user.password])
 }
-export default { findUserByUsername, insertUser }
+
+async function setMember(userId) {
+    await pool.query(`
+        UPDATE users SET membership_status = true WHERE users.id = $1`, [userId]);
+}
+export default { findUserByUsername, insertUser, setMember }
