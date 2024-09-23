@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
 import authUtil from "../lib/authorizationUtil.mjs";
 const { checkLoggedIn } = authUtil;
+import passport from "../config/passport.mjs";
 import "dotenv/config";
 
 const validateUser = [
@@ -103,4 +104,16 @@ function loginPageGet(req, res) {
     res.render("log-in-form");
 }
 
-export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet };
+const loginPost = [
+    passport.authenticate("local", {
+        failureRedirect: "/login",
+        failureMessage: "Incorrect username or password",
+        successRedirect: "/",
+        successMessage: "Welcome back!"
+    }),
+    (req, res) => {
+        res.redirect("/");
+    }
+]
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost };
