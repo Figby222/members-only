@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Create Message</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <h1 class="main-heading">Create a Message</h1>
+        <form action="/create-message" method="POST">
+            <%- include("errors") %>
+            <label for="title">Title: </label>
+            <input type="text" name="title" id="title" value="<%= locals.message.title %>" />
+            <label for="text">Message: </label>
+            <input type="text" name="text" id="text" value="<%= locals.message.text %>" />
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
