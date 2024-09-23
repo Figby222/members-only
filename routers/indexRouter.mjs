@@ -11,4 +11,6 @@ indexRouter.get("/", indexController.indexRouteGet);
 
 indexRouter.post("/sign-up", indexController.signUpPost);
 
+indexRouter.post("/join-club", indexController.joinClubPost);
+
 export default indexRouter;
