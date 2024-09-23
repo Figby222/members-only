@@ -9,7 +9,8 @@ const SQL = `CREATE TABLE IF NOT EXISTS users (
     last_name VARCHAR ( 255 ) NOT NULL,
     password TEXT,
     salt TEXT,
-    membership_status BOOLEAN DEFAULT false
+    membership_status BOOLEAN DEFAULT false,
+    isAdmin BOOLEAN DEFAULT false
 );
 
 CREATE TABLE IF NOT EXISTS messages (
