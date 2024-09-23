@@ -35,3 +35,12 @@ Make sure text is not empty
 Insert message into db with timestamp & userId
 Redirect user to root
 
+joinAdminsPageGet
+Make sure user is authenticated
+render join admins page
+
+joinAdminsPost
+Make sure user is authenticated
+Make sure secret_admin_password is correct, if not, redirect to failure page, if so, continue
+set user to admin
+redirect user to root
