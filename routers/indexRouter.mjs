@@ -19,4 +19,6 @@ indexRouter.post("/join-club", indexController.joinClubPost);
 
 indexRouter.post("/log-in", indexController.loginPost);
 
+indexRouter.post("/create-message", indexController.createMessagePost);
+
 export default indexRouter;
