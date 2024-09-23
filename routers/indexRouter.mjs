@@ -3,6 +3,8 @@ import * as indexController from "../controllers/indexController.mjs";
 
 const indexRouter = Router();
 
+indexRouter.get("/join-club", indexController.joinClubPageGet);
+
 indexRouter.get("/sign-up", indexController.signUpFormGet);
 
 indexRouter.get("/", indexController.indexRouteGet);
