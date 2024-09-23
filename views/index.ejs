@@ -5,6 +5,9 @@
         <title>Message Board</title>
     </head>
     <body>
+        <header>
+            <%- include("navbar") %>
+        </header>
         <h1>Message Board</h1>
         <% if (locals.messages) { %>
             <ul class="messages">

@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
+        <header>
+            <%- include("navbar") %>
+        </header>
         <h1 class="main-heading">Log In</h1>
         <form action="/log-in" method="POST">
             <%- include("errors") %>
