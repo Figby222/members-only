@@ -1,3 +1,4 @@
 /sign-up
 /join-club
 /create-message
+/join-admins
