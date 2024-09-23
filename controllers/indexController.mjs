@@ -51,6 +51,13 @@ const validateMessage = [
         .isLength({ max: 255 }).withMessage("Message must contain a maximum of 255 characters")
 ]
 
+const validateAdminRegistration = [
+    body("secret_admin_password")
+        .custom((secretPassword) => {
+            return secretPassword === process.env.SECRET_ADMIN_CLUB_PASSWORD;
+        }).withMessage("incorrect password")
+]
+
 async function indexRouteGet(req, res) {
     const messages = await db.getMessages();
 
@@ -165,4 +172,19 @@ function joinAdminsPageGet(req, res) {
     res.render("join-admins-form");
 }
 
-export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet, createMessagePost, joinAdminsPageGet };
+const joinAdminsPost = [
+    validateAdminRegistration,
+    asyncHandler(async (req, res) => {
+        const errorsResult = validationResult(req);
+        if (!errorsResult.isEmpty()) {
+            res.render("join-admins-form", { errors: errorsResult.errors });
+            return;
+        }
+    
+        await db.setAdmin(req.user.id);
+    
+        res.redirect("/");
+    })
+]
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet, createMessagePost, joinAdminsPageGet, joinAdminsPost };
