@@ -191,4 +191,18 @@ const joinAdminsPost = [
     })
 ]
 
-export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet, createMessagePost, joinAdminsPageGet, joinAdminsPost };
+const deleteMessagePost = [
+    checkLoggedIn,
+    asyncHandler(async (req, res) => {
+        if (!req.user.isadmin) {
+            res.status(401).redirect("/");
+        }
+    
+        await db.deleteMessage(req.params.messageId);
+    
+        res.redirect("/");
+    })
+]
+
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet, createMessagePost, joinAdminsPageGet, joinAdminsPost, deleteMessagePost };
