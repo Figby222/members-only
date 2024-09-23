@@ -42,6 +42,15 @@ const validateClubRegistration = [
         }).withMessage("Incorrect password")
 ]
 
+const validateMessage = [
+    body("title")
+        .notEmpty().withMessage("Title must not be empty")
+        .isLength({ max: 30 }).withMessage("Title contain a maximum of 30 characters"),
+    body("text")
+        .notEmpty().withMessage("Message must not be empty")
+        .isLength({ max: 255 }).withMessage("Message must contain a maximum of 255 characters")
+]
+
 function indexRouteGet(req, res) {
     res.render("index", { title: "Node Template" });
 }
@@ -123,4 +132,25 @@ const createMessagePageGet = [
     }
 ]
 
-export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet };
+const createMessagePost = [
+    checkLoggedIn,
+    validateMessage,
+    asyncHandler(async (req, res) => {
+        const errorsResult = validationResult(req);
+        if (!errorsResult.isEmpty()) {
+            res.render("create-message-form", { errors: errorsResult.errors, message: { ...req.body }});
+            return;
+        }
+    
+        await db.insertMessage({
+            title: req.body.title,
+            text: req.body.text,
+            timestamp: new Date(Date.now()).toISOString(),
+            creator_id: req.user.id
+        })
+    
+        res.redirect("/");
+    })
+]
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet, createMessagePost };
