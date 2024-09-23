@@ -22,3 +22,16 @@ check if the password lines up with the secret club password
 if not, redirect to a failure page
 if so, set user membership status to true
 redirect user to success page
+
+createMessagePageGet
+render create message page if user is authenticated
+
+createMessagePost
+Make sure user is authenticated
+Make sure title is less than 30 characters
+Make sure title is not empty
+Make sure text is less than 255 characters
+Make sure text is not empty
+Insert message into db with timestamp & userId
+Redirect user to root
+
