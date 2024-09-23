@@ -1,4 +1,5 @@
 import pool from "./pool.mjs";
+
 async function findUserByUsername(username) {
     const { rows } = await pool.query(`
         SELECT * FROM users WHERE username = $1
@@ -32,6 +33,7 @@ async function insertMessage(message) {
     `, [message.title, message.text, message.timestamp, message.creator_id]);
     return rows;
 };
+
 async function getMessages() {
     const { rows } = await pool.query(`
         SELECT messages.id, title, text, to_char(timestamp, 'DD Mon YYYY, HH12:MI:SS AM') as timestamp, 
@@ -43,4 +45,9 @@ async function getMessages() {
     return rows;
 }
 
-export default { findUserByUsername, insertUser, setMember, insertMessage, getMessages }
+async function setAdmin(userId) {
+    await pool.query(`
+        UPDATE users SET isAdmin = true WHERE users.id = $1`, [userId])
+}
+
+export default { findUserByUsername, insertUser, setMember, insertMessage, getMessages, setAdmin }
