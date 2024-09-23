@@ -16,6 +16,11 @@
                             <p class="creator">-<%= message.first_name %> <%= message.last_name %></p>
                             <p class="timestamp"><%= message.timestamp %></p>
                         <% } %>
+                        <% if (locals.user && locals.user.isadmin) { %>
+                            <form action="/delete/<%= message.id %>" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <% } %>
                     </li>
                 <% }) %>
             </ul>
