@@ -168,11 +168,15 @@ const createMessagePost = [
     })
 ]
 
-function joinAdminsPageGet(req, res) {
-    res.render("join-admins-form");
-}
+const joinAdminsPageGet = [
+    checkLoggedIn,
+    (req, res) => {
+        res.render("join-admins-form");
+    }
+]
 
 const joinAdminsPost = [
+    checkLoggedIn,
     validateAdminRegistration,
     asyncHandler(async (req, res) => {
         const errorsResult = validationResult(req);
