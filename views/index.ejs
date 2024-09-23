@@ -2,9 +2,23 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title><%= title %></title>
+        <title>Message Board</title>
     </head>
     <body>
-        <h1><%= title %></h1>
+        <h1>Message Board</h1>
+        <% if (locals.messages) { %>
+            <ul class="messages">
+                <% messages.forEach((message) => {%>
+                    <li class="message">
+                        <h1 class="title"><%= message.title %></h1>
+                        <p class="text"><%= message.text %></p>
+                        <% if (locals.user && locals.user.membership_status) { %>
+                            <p class="creator">-<%= message.first_name %> <%= message.last_name %></p>
+                            <p class="timestamp"><%= message.timestamp %></p>
+                        <% } %>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
     </body>
 </html>
