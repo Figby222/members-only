@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Join the Secret Admins Club!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <h1 class="main-heading">Join the Secret Admins Club</h1>
+        <form action="/join-admins" method="POST">
+            <%- include("errors") %>
+            <label for="secret-admin-password">Secret Admin Password: </label>
+            <input type="password" name="secret_admin_password" id="secret-admin-password" />
+            <button type="submit">Submit</button>
+        </form>
+
+    </body>
+    
+</html>
