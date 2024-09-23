@@ -116,4 +116,11 @@ const loginPost = [
     }
 ]
 
-export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost };
+const createMessagePageGet = [
+    checkLoggedIn,
+    (req, res) => {
+        res.render("create-message-form", { message: {} });
+    }
+]
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet };
