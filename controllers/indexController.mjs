@@ -106,7 +106,7 @@ function loginPageGet(req, res) {
 
 const loginPost = [
     passport.authenticate("local", {
-        failureRedirect: "/login",
+        failureRedirect: "/log-in",
         failureMessage: "Incorrect username or password",
         successRedirect: "/",
         successMessage: "Welcome back!"
