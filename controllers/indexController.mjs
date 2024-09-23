@@ -161,4 +161,8 @@ const createMessagePost = [
     })
 ]
 
-export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet, createMessagePost };
+function joinAdminsPageGet(req, res) {
+    res.render("join-admins-form");
+}
+
+export { indexRouteGet, signUpFormGet, signUpPost, joinClubPageGet, joinClubPost, loginPageGet, loginPost, createMessagePageGet, createMessagePost, joinAdminsPageGet };
