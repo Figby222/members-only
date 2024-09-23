@@ -21,4 +21,6 @@ indexRouter.post("/create-message", indexController.createMessagePost);
 
 indexRouter.post("/join-admins", indexController.joinAdminsPost);
 
+indexRouter.post("/delete/:messageId", indexController.deleteMessagePost);
+
 export default indexRouter;
