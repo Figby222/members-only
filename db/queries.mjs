@@ -27,12 +27,13 @@ async function insertMessage(message) {
     const { rows } = await pool.query(`
         INSERT INTO messages (title, text, timestamp, creator_id)
         VALUES (
-            $1, $2, $3, $4
+            $1, $2, TO_TIMESTAMP($3::numeric/1000), $4
         )
         RETURNING *
     `, [message.title, message.text, message.timestamp, message.creator_id]);
     return rows;
 };
+
 async function getMessages() {
     const { rows } = await pool.query(`
         SELECT messages.id, title, text, to_char(timestamp, 'DD Mon YYYY, HH12:MI:SS AM') as timestamp, 
