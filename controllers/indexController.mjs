@@ -160,7 +160,7 @@ const createMessagePost = [
         await db.insertMessage({
             title: req.body.title,
             text: req.body.text,
-            timestamp: new Date(Date.now()).toISOString(),
+            timestamp: Date.now(),
             creator_id: req.user.id
         })
     
